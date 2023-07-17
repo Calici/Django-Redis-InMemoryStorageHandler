@@ -40,10 +40,10 @@
 
 Files to check related to the in-memory cache:
  
-- `docker-compose.yaml`
-- `src/refreshHandler.py`
-- `src/requestHandler.py`
-- `src/tests.py`
+- `docker-compose.yaml` :  Run a dockerized Redis Server
+- `src/refreshHandler.py` : 
+- `src/requestHandler.py` : Request Handling + Redis Schema Specification within the Request Handler
+- `src/tests.py` : Unit Tests
 - `src/app.py` (calls the `refreshHandler`)
 - `src/urls.py`
 - `Redis/settings.py` (refer to [this link](https://www.dragonflydb.io/faq/how-to-use-redis-with-django) for more information)
