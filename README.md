@@ -28,12 +28,12 @@
 
    Note: If you visit the page, you may not see anything displayed.
 
-6. Allows the use of the RefreshHandler function for Background Task handling:
+6. Allows the use of the RefreshHandler function for Background Task handling(Write on new terminal):
    ```bash
    python manage.py process_tasks
    ```
 
-7. Run the tests:
+7. Run the tests(Write on new terminal):
    ```bash
    python manage.py test
    ```
