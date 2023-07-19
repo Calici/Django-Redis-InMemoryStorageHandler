@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 
 import pathlib
-from django.core.exceptions import ObjectDoesNotExist
+
 from typing import Iterable
 class ImageCache:
     TTL: timedelta = timedelta(minutes=5)
