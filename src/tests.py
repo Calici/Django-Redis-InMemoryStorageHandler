@@ -39,7 +39,7 @@ class HandlePostTest(TestCase):
         module_root = '/path/to/module_root'
         fpath = '/path/to/fpath'
         cache_root = '/path/to/cache_root'
-        src_path = f"{module_root}/{fpath}"
+        src_path = f"{module_root}{fpath}"
         cache.delete(src_path)  # Ensure the cache is empty to start with
 
         response = client.post('/handle_post/', {
@@ -55,20 +55,20 @@ class HandlePostTest(TestCase):
 
         # Verify the content of cached_data
         self.assertEqual(cached_data['srcPath'], src_path)
-        self.assertEqual(cached_data['cachePath'], f"{cache_root}/{fpath}")
+        self.assertEqual(cached_data['cachePath'], f"{cache_root}{fpath}")
         self.assertIsInstance(cached_data['timeStamp'], int)
 
     def test_handle_post_existing_entry(self) -> None:
         client = Client()
-        module_root = '/path/to/module_root'
-        fpath = '/path/to/fpath'
-        cache_root = '/path/to/cache_root'
-        src_path = f"{module_root}/{fpath}"
+        module_root = '/path/to/module_root1'
+        fpath = '/path/to/fpath1'
+        cache_root = '/path/to/cache_root1'
+        src_path = f"{module_root}{fpath}"
 
         # Create an initial cache entry
         initial_data: dict = {
             'srcPath': src_path,
-            'cachePath': f"{cache_root}/{fpath}",
+            'cachePath': f"{cache_root}{fpath}",
             'timeStamp': int((datetime.now() + timedelta(minutes=5)).timestamp())
         }
         cache.set(src_path, initial_data)
@@ -79,7 +79,12 @@ class HandlePostTest(TestCase):
             'cache_root': cache_root,
         })
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['cachePath'], f"{cache_root}/{fpath}")
+        self.assertEqual(response.json()['cachePath'], f"{cache_root}{fpath}")
+        
+
+        
+
+
 
         # Check that the data has not been altered in the cache
         cached_data = cache.get(src_path)
